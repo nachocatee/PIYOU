@@ -7,6 +7,7 @@
 package com.example.piyou.presentation
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -24,13 +25,30 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import com.example.piyou.R
 import com.example.piyou.presentation.theme.PiYouTheme
+import android.widget.Button
+import com.example.piyou.databinding.ActivityMainBinding
 
 class MainActivity : ComponentActivity() {
+
+    // 전역 변수로 바인딩 객체 선언
+    private var mBinding: ActivityMainBinding? = null
+    // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
+    private val binding get() = mBinding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            WearApp("Android")
-        }
+//        setContentView(R.layout.activity_main)
+
+        mBinding = ActivityMainBinding.inflate(layoutInflater);
+
+        setContentView(binding.root);
+
+        binding.scriptButton.setText("테스트 중입니다.");
+    }
+
+    override fun onDestroy() {
+        mBinding = null;
+        super.onDestroy();
     }
 }
 
