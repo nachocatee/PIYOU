@@ -13,5 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PiYou"
+rootProject.name = "WatchApp"
 include(":app")
+ 
