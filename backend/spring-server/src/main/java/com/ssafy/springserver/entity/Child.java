@@ -31,6 +31,10 @@ public class Child {
     @Column(columnDefinition = "default 0")
     private Integer experience;
 
+    @OneToOne(optional = false, orphanRemoval = true)
+    @JoinColumn(name = "status_id", nullable = false, unique = true)
+    private Status status;
+
     @PrePersist
     private void prePersist() {
         this.experience = 0;
