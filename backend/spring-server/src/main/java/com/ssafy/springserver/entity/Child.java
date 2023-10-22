@@ -14,7 +14,6 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "child")
 public class Child {
     @Id
     @Column(name = "child_id", nullable = false)
