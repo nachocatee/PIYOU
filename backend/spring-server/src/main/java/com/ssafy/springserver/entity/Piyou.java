@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "piyou")
 public class Piyou {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
