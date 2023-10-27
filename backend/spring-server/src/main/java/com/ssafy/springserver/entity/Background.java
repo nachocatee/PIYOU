@@ -21,7 +21,7 @@ public class Background {
     @Column(nullable = false, unique = true, length = 330)
     private String path;
 
-    @ManyToOne
-    @JoinColumn(name = "child_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "child_id", nullable = false)
     private Child child;
 }

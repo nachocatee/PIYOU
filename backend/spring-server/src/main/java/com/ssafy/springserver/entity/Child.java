@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -12,30 +11,33 @@ import java.util.UUID;
 @Getter
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Child {
     @Id
-    @Column(name = "child_id", nullable = false)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
+    @Column(name = "child_id", nullable = false, length = 16)
     private UUID id;
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "name", length = 20)
     private String name;
 
-    @Column(columnDefinition = "default 0")
+    @Column(name = "level")
+    private Integer level;
+
+    @Column(name = "experience")
     private Integer experience;
 
-    @OneToOne(optional = false, orphanRemoval = true)
-    @JoinColumn(name = "status_id", nullable = false, unique = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
     @PrePersist
-    private void prePersist() {
+    public void prePersist() {
+        if (this.id == null) {
+            // 16자리 uuid
+            this.id = UUID.randomUUID();
+        }
+        this.level = 1;
         this.experience = 0;
     }
 }

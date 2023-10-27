@@ -2,21 +2,26 @@ package com.ssafy.springserver.dto;
 
 import lombok.Builder;
 import lombok.Value;
+
+import java.util.UUID;
 /**
  * DTO for {@link com.ssafy.springserver.entity.Child}
  */
 @Value
 @Builder
 public class ChildResponse {
+    UUID id;
     String name;
     Integer experience;
     StatusResponse status;
 
-    public ChildResponse toEntity() {
+    // fromEntity
+    public static ChildResponse fromEntity(com.ssafy.springserver.entity.Child child) {
         return ChildResponse.builder()
-                .name(name)
-                .experience(experience)
-                .status(status)
+                .id(child.getId())
+                .name(child.getName())
+                .experience(child.getExperience())
+                .status(StatusResponse.fromEntity(child.getStatus()))
                 .build();
     }
 }

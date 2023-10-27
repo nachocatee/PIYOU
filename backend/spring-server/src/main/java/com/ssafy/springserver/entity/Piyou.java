@@ -1,6 +1,9 @@
 package com.ssafy.springserver.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -18,6 +21,11 @@ public class Piyou {
     @Column(nullable = false, unique = true, length = 20)
     private String name;
 
+    @Column(name = "eng_name")
+    private String engName;
+
     @Column(nullable = false, unique = true, length = 330)
     private String path;
+
+    private Integer degree;
 }

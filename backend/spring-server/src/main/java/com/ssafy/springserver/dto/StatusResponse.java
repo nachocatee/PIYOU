@@ -1,5 +1,6 @@
 package com.ssafy.springserver.dto;
 
+import com.ssafy.springserver.entity.Status;
 import lombok.Builder;
 import lombok.Value;
 /**
@@ -8,13 +9,16 @@ import lombok.Value;
 @Value
 @Builder
 public class StatusResponse {
-    Long hungry;
-    Long health;
+    Long id;
+    Integer hungry;
+    Integer health;
 
-    public StatusResponse toEntity() {
+    // fromEntity
+    public static StatusResponse fromEntity(Status status) {
         return StatusResponse.builder()
-                .hungry(hungry)
-                .health(health)
+                .id(status.getId())
+                .hungry(status.getHungry())
+                .health(status.getHealth())
                 .build();
     }
 }
