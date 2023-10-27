@@ -3,6 +3,7 @@ import com.ssafy.springserver.dto.ChildRequest;
 import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.service.ChildService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +35,10 @@ public class ChildController {
     @GetMapping("/{childId}")
     public ResponseEntity<ChildResponse> getChild(@PathVariable UUID childId) {
         return ResponseEntity.ok(childService.getChild(childId));
+    }
+
+    @PutMapping("/{childId}")
+    public ResponseEntity<ChildResponse> updateChild(@PathVariable UUID childId, @RequestBody ChildRequest child) {
+        return ResponseEntity.ok(childService.updateChild(childId, child));
     }
 }

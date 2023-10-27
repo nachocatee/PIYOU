@@ -18,17 +18,20 @@ public class ChildService {
     private final StatusRepository statusRepository;
     public ChildResponse createChild(ChildRequest childRequest) {
         Status status = statusRepository.save(new Status());
-        Child child = childRepository.save(Child.builder()
-                .name(childRequest.getName())
-                .status(status)
-                .build());
+        Child child = childRepository.save(Child.builder().name(childRequest.getName()).status(status).build());
 
         return ChildResponse.fromEntity(child);
     }
     public ChildResponse getChild(UUID childId) {
-        Child child = childRepository.findById(childId).orElseThrow(
-                () -> new IllegalArgumentException("해당 아이가 없습니다.")
-        );
+        Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
         return ChildResponse.fromEntity(child);
+    }
+    public ChildResponse updateChild(UUID childId, ChildRequest child) {
+        Child childEntity = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
+
+        childEntity.updateName(child.getName());
+
+        childRepository.save(childEntity);
+        return ChildResponse.fromEntity(childEntity);
     }
 }
