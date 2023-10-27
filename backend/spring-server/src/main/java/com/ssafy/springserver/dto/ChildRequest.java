@@ -14,6 +14,7 @@ public class ChildRequest {
     UUID id;
     String name;
     Integer experience;
+    Integer level;
     StatusRequest status;
 
     public ChildRequest toEntity() {

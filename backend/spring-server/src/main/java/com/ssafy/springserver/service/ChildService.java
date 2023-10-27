@@ -29,7 +29,13 @@ public class ChildService {
     public ChildResponse updateChild(UUID childId, ChildRequest child) {
         Child childEntity = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
 
-        childEntity.updateName(child.getName());
+        if (child.getName() != null) {
+            childEntity.updateName(child.getName());
+        }
+
+        if (child.getExperience() != null) {
+            childEntity.updateExperience(child.getExperience());
+        }
 
         childRepository.save(childEntity);
         return ChildResponse.fromEntity(childEntity);

@@ -1,6 +1,9 @@
 package com.ssafy.springserver.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -40,5 +43,12 @@ public class Child {
 
     public void updateName(String name) {
         this.name = name;
+    }
+    public void updateExperience(Integer experience) {
+        this.experience += experience;
+        if (experience >= 100) {
+            this.level += 1;
+            this.experience -= 100;
+        }
     }
 }

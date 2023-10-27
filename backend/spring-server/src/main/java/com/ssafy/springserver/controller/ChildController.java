@@ -3,7 +3,6 @@ import com.ssafy.springserver.dto.ChildRequest;
 import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.service.ChildService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +36,13 @@ public class ChildController {
         return ResponseEntity.ok(childService.getChild(childId));
     }
 
+    /**
+     * 아이 정보 수정
+     *
+     * @param childId 아이 id
+     * @param child   수정할 아이 정보
+     * @return 수정된 아이 정보
+     */
     @PutMapping("/{childId}")
     public ResponseEntity<ChildResponse> updateChild(@PathVariable UUID childId, @RequestBody ChildRequest child) {
         return ResponseEntity.ok(childService.updateChild(childId, child));

@@ -12,6 +12,7 @@ import java.util.UUID;
 public class ChildResponse {
     UUID id;
     String name;
+    Integer level;
     Integer experience;
     StatusResponse status;
 
@@ -21,6 +22,7 @@ public class ChildResponse {
                 .id(child.getId())
                 .name(child.getName())
                 .experience(child.getExperience())
+                .level(child.getLevel())
                 .status(StatusResponse.fromEntity(child.getStatus()))
                 .build();
     }
