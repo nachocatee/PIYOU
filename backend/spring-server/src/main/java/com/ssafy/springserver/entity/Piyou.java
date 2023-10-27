@@ -4,11 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Piyou {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
