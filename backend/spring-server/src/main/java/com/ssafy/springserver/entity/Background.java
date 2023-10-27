@@ -1,6 +1,9 @@
 package com.ssafy.springserver.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -11,6 +14,7 @@ import javax.persistence.*;
 @Entity
 public class Background {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "background_id", nullable = false)
     private Long id;
 
