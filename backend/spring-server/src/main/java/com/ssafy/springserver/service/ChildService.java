@@ -49,14 +49,4 @@ public class ChildService {
         childRepository.save(childEntity);
         return ChildResponse.fromEntity(childEntity);
     }
-    public List<CollectedResponse> getPiyouList(UUID childId) {
-        List<Collected> collectedList = collectedRepository.findByChildId(childId);
-        return collectedList.stream().map(CollectedResponse::fromEntity).collect(Collectors.toList());
-    }
-    public CollectedResponse createPiyou(UUID childId, Long piyouId) {
-        Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
-        Piyou piyou = piyouRepository.findById(piyouId).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
-        Collected collected = collectedRepository.save(Collected.builder().child(child).piyou(piyou).build());
-        return CollectedResponse.fromEntity(collected);
-    }
 }
