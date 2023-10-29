@@ -18,10 +18,10 @@ services:
     container_name: database
     # 공식 문서를 보고 환경 설정 변수 확인
     environment:
-      - MYSQL_ROOT_PASSWORD=${PASSWORD}
-      - MYSQL_PASSWORD=${PASSWORD}
-      - MYSQL_USER=${USER}
-      - MYSQL_DATABASE=${DATABASE}
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=piyou
       - TZ=Asia/Seoul
         - MYSQL_CHARSET=utf8mb4
         - MYSQL_COLLATION=utf8mb4_unicode_ci
