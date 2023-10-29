@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -31,6 +32,8 @@ public class Child {
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
+    @OneToMany(mappedBy = "child", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Collected> collects;
     @PrePersist
     public void prePersist() {
         if (this.id == null) {

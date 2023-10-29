@@ -1,14 +1,20 @@
 package com.ssafy.springserver.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "collected")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Collected {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "collected_id", nullable = false)
     private Long id;
 

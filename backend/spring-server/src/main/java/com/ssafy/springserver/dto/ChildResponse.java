@@ -1,5 +1,6 @@
 package com.ssafy.springserver.dto;
 
+import com.ssafy.springserver.entity.Child;
 import lombok.Builder;
 import lombok.Value;
 
@@ -16,8 +17,7 @@ public class ChildResponse {
     Integer experience;
     StatusResponse status;
 
-    // fromEntity
-    public static ChildResponse fromEntity(com.ssafy.springserver.entity.Child child) {
+    public static ChildResponse fromEntity(Child child) {
         return ChildResponse.builder()
                 .id(child.getId())
                 .name(child.getName())
