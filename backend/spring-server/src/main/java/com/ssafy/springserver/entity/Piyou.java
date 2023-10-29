@@ -24,8 +24,5 @@ public class Piyou {
     @Column(name = "eng_name")
     private String engName;
 
-    @Column(nullable = false, unique = true, length = 330)
-    private String path;
-
     private Integer degree;
 }

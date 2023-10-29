@@ -28,7 +28,7 @@ public class Child {
     @Column(name = "experience")
     private Integer experience;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
