@@ -8,17 +8,25 @@ services:
       context: ./backend/spring-server
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "9999:9999"
+    depends_on:
+      - database
 
   database:
     restart: "always"
     image: mysql:latest
     container_name: database
     # 공식 문서를 보고 환경 설정 변수 확인
-    environment: 
-      - MYSQL_ROOT_PASSWORDt${PASSWORD}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${PASSWORD}
       - MYSQL_PASSWORD=${PASSWORD}
       - MYSQL_USER=${USER}
       - MYSQL_DATABASE=${DATABASE}
+      - TZ=Asia/Seoul
+        - MYSQL_CHARSET=utf8mb4
+        - MYSQL_COLLATION=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
+    volumes:
+      - ./backend/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: [ "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--init-connect='SET NAMES utf8mb4;'" ]
