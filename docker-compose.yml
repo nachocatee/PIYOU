@@ -5,10 +5,10 @@ services:
     restart: "always"
     container_name: springboot
     build: 
-      context: ./backend/spring-server/Dockerfile
+      context: ./backend/spring-server
       dockerfile: Dockerfile
     ports:
-      - "9999:9999"
+      - "8080:8080"
 
   database:
     restart: "always"
@@ -16,7 +16,7 @@ services:
     container_name: database
     # 공식 문서를 보고 환경 설정 변수 확인
     environment: 
-      - MYSQL_ROOT_PASSWORD=${PASSWORD}
+      - MYSQL_ROOT_PASSWORDt${PASSWORD}
       - MYSQL_PASSWORD=${PASSWORD}
       - MYSQL_USER=${USER}
       - MYSQL_DATABASE=${DATABASE}
