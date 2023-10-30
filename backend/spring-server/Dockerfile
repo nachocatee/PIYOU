@@ -1,20 +1,16 @@
-FROM gradle:8.3-jdk11 AS builder
+# 베이스 이미지를 선택합니다.
+FROM openjdk:11
 
+# 작업 디렉토리를 설정합니다.
 WORKDIR /app
 
-COPY build.gradle settings.gradle ./
-COPY src ./src/
+# 소스 코드와 빌드 파일을 복사합니다.
+COPY . /app
 
-RUN gradle clean
-RUN gradle build
-
-FROM adoptopenjdk/openjdk11
-
-WORKDIR /app
-
-
-COPY --from=builder /app/build/libs/spring-server-0.0.1-SNAPSHOT.jar app.jar
+# Gradle wrapper 권한 설정
+RUN chmod +x ./gradlew
 
 EXPOSE 9999
 
-CMD [ "java", "-jar", "app.jar"]
+# 애플리케이션을 실행합니다.
+CMD ["./gradlew", "bootRun"]
