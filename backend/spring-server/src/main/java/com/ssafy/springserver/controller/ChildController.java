@@ -49,15 +49,14 @@ public class ChildController {
         return ResponseEntity.ok(childService.updateChild(childId, child));
     }
 
-    /**
-     * 아이가 7일 굶으면 현재 status 피유 사망
-     * schedule로 매일매일 체크
-     *
-     * @param childId 아이 id
-     * @return 아이 정보
-     */
-    @Scheduled(cron = "0 0 0 * * *")
-    public void checkChild(@PathVariable UUID childId) {
-        childService.checkChild(childId);
-    }
+//    /**
+//     * 아이가 7일 굶으면 현재 status 피유 사망
+//     * schedule로 매일매일 체크
+//     *
+//     * @param childId 아이 id
+//     */
+//    @Scheduled(cron = "0 0 0 * * *")
+//    public void checkChild(@PathVariable UUID childId) {
+//        childService.checkChild(childId);
+//    }
 }
