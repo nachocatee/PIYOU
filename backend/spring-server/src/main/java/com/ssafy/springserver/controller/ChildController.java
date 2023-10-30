@@ -47,4 +47,8 @@ public class ChildController {
     public ResponseEntity<ChildResponse> updateChild(@PathVariable UUID childId, @RequestBody ChildRequest child) {
         return ResponseEntity.ok(childService.updateChild(childId, child));
     }
+
+    /**
+     * 아이 7일 굶으면 현재 피유
+     */
 }

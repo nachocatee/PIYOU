@@ -22,11 +22,11 @@ public class Child {
     @Column(name = "name", length = 20)
     private String name;
 
-    @Column(name = "level")
     private Integer level;
 
-    @Column(name = "experience")
     private Integer experience;
+
+    private Integer starved;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "status_id", nullable = false)

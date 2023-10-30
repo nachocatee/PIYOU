@@ -29,7 +29,7 @@ public class Status {
 
     @PrePersist
     private void prePersist() {
-        piyouId = 1L;
+        this.piyouId = 1L;
         this.hungry = 0;
         this.health = 0;
     }

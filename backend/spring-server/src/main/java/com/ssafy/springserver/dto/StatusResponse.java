@@ -10,13 +10,14 @@ import lombok.Value;
 @Builder
 public class StatusResponse {
     Long id;
+    Long piyouId;
     Integer hungry;
     Integer health;
 
-    // fromEntity
     public static StatusResponse fromEntity(Status status) {
         return StatusResponse.builder()
                 .id(status.getId())
+                .piyouId(status.getPiyouId())
                 .hungry(status.getHungry())
                 .health(status.getHealth())
                 .build();
