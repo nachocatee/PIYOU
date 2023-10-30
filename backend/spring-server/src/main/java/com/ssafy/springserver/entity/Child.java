@@ -1,9 +1,6 @@
 package com.ssafy.springserver.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,8 +23,11 @@ public class Child {
 
     private Integer experience;
 
+    @Setter
     private Integer starved;
+    private Boolean isMeal;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
@@ -42,6 +42,8 @@ public class Child {
         }
         this.level = 1;
         this.experience = 0;
+        this.starved = 0;
+        this.isMeal = false;
     }
 
     public void updateName(String name) {
@@ -54,4 +56,5 @@ public class Child {
             this.experience -= 100;
         }
     }
+
 }

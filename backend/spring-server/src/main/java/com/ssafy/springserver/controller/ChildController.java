@@ -4,6 +4,7 @@ import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.service.ChildService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -49,6 +50,14 @@ public class ChildController {
     }
 
     /**
-     * 아이 7일 굶으면 현재 피유
+     * 아이가 7일 굶으면 현재 status 피유 사망
+     * schedule로 매일매일 체크
+     *
+     * @param childId 아이 id
+     * @return 아이 정보
      */
+    @Scheduled(cron = "0 0 0 * * *")
+    public void checkChild(@PathVariable UUID childId) {
+        childService.checkChild(childId);
+    }
 }

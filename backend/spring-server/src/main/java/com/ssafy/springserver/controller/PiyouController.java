@@ -1,5 +1,6 @@
 package com.ssafy.springserver.controller;
 import com.ssafy.springserver.dto.CollectedResponse;
+import com.ssafy.springserver.dto.StatusResponse;
 import com.ssafy.springserver.service.PiyouService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +37,13 @@ public class PiyouController {
     @PostMapping("/{childId}/{piyouId}")
     public ResponseEntity<CollectedResponse> createPiyou(@PathVariable UUID childId, @PathVariable Long piyouId) {
         return ResponseEntity.ok(piyouService.createPiyou(childId, piyouId));
+    }
+
+    /**
+     * 현재 키울 피유 등록
+     */
+    @PostMapping("/{childId}/current/{piyouId}")
+    public ResponseEntity<StatusResponse> createCurrentPiyou(@PathVariable UUID childId, @PathVariable Long piyouId) {
+        return ResponseEntity.ok(piyouService.createCurrentPiyou(childId, piyouId));
     }
 }

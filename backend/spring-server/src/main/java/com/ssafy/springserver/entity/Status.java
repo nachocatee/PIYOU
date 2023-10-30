@@ -1,9 +1,6 @@
 package com.ssafy.springserver.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -18,6 +15,7 @@ public class Status {
     @Column(name = "status_id", nullable = false)
     private Long id;
 
+    @Setter
     @Column(name = "piyou_id")
     private Long piyouId;
 
@@ -26,11 +24,17 @@ public class Status {
 
     @Column(columnDefinition = "INT DEFAULT 0")
     private Integer health;
+    private Boolean death;
 
+
+    public void piyouDeath() {
+        this.death = true;
+    }
     @PrePersist
     private void prePersist() {
         this.piyouId = 1L;
         this.hungry = 0;
         this.health = 0;
+        this.death = false;
     }
 }
