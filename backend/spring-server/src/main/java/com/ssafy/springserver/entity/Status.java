@@ -26,7 +26,6 @@ public class Status {
     private Integer health;
     private Boolean death;
 
-
     public void piyouDeath() {
         this.death = true;
     }
