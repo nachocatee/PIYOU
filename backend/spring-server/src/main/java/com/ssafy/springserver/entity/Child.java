@@ -49,12 +49,10 @@ public class Child {
     public void updateName(String name) {
         this.name = name;
     }
+
     public void updateExperience(Integer experience) {
         this.experience += experience;
-        if (experience >= 100) {
-            this.level += 1;
-            this.experience -= 100;
-        }
+        this.level += this.experience / 100;
+        this.experience %= 100;
     }
-
 }
