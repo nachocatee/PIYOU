@@ -10,7 +10,7 @@
   <div class="col-12 col-center mw-227">
     <div class="col-12 main_btn_con">
       <div class="col-6 main_btn">
-        <a href="javascirpt:void(0)" class="col-12 main_btn_inner">
+        <a href="https://piyou.notion.site/PIYOU-7f1b3b65db654aaa8c0171e807208c59?pvs=4" class="col-12 main_btn_inner">
           패치노트
         </a>
       </div>
