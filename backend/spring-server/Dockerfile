@@ -8,4 +8,5 @@ RUN ./gradlew clean build -x test
 # 실행 스테이지
 FROM openjdk:11-jre-slim
 COPY --from=build /workspace/app/build/libs/*.jar app.jar
+EXPOSE 9999
 ENTRYPOINT ["java","-jar","/app.jar"]
