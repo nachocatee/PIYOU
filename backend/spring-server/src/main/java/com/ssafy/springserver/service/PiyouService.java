@@ -32,9 +32,19 @@ public class PiyouService {
     public CollectedResponse createPiyou(UUID childId, Long piyouId) {
         Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
         Piyou piyou = piyouRepository.findById(piyouId).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
-        Collected collected = collectedRepository.save(Collected.builder().child(child).piyou(piyou).build());
-        return CollectedResponse.fromEntity(collected);
+        Collected collected = collectedRepository.findByChildAndPiyou(child, piyou).orElse(null);
+        if (collected == null) {
+            return CollectedResponse.fromEntity(collectedRepository.save(
+                    Collected.builder()
+                            .child(child)
+                            .piyou(piyou)
+                            .build()
+            ));
+        } else {
+            throw new IllegalArgumentException("이미 등록된 피유입니다.");
+        }
     }
+
     public StatusResponse createCurrentPiyou(UUID childId, Long piyouId) {
         Status status = new Status();
         Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
