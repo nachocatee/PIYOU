@@ -4,7 +4,7 @@ services:
   springboot:
     restart: "always"
     container_name: springboot
-    build: 
+    build:
       context: ./backend/spring-server
       dockerfile: Dockerfile
     ports:
@@ -22,11 +22,25 @@ services:
       - MYSQL_PASSWORD=root
       - MYSQL_USER=root
       - MYSQL_DATABASE=piyou
-      - TZ=Asia/Seoul
-        - MYSQL_CHARSET=utf8mb4
-        - MYSQL_COLLATION=utf8mb4_unicode_ci
+      - TZ=Asia/Seoul - MYSQL_CHARSET=utf8mb4 - MYSQL_COLLATION=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
       - ./backend/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: [ "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--init-connect='SET NAMES utf8mb4;'" ]
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--init-connect='SET NAMES utf8mb4;'"
+      ]
+
+  fastapi:
+    restart: "always"
+    container_name: fastapi
+    build:
+      context: ./backend/fastapi-server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
