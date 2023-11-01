@@ -1,16 +1,11 @@
-# 베이스 이미지를 선택합니다.
-FROM openjdk:11
+# 빌드 스테이지
+FROM gradle:3.8-jdk11 AS build
+WORKDIR /workspace/app
+COPY . /workspace/app
+RUN gradle clean build -x test
 
-# 작업 디렉토리를 설정합니다.
-WORKDIR /app
-
-# 소스 코드와 빌드 파일을 복사합니다.
-COPY . /app
-
-# Gradle wrapper 권한 설정
-RUN chmod +x ./gradlew
-
+# 실행 스테이지
+FROM openjdk:11-jre-slim
+COPY --from=build /workspace/app/build/libs/*.jar app.jar
 EXPOSE 9999
-
-# 애플리케이션을 실행합니다.
-CMD ["./gradlew", "bootRun"]
+ENTRYPOINT ["java","-jar","/app.jar"]
