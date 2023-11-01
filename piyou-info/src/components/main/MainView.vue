@@ -3,7 +3,7 @@
 
 <template>
   <div class="col-12 mb20 pt10 pb28 col-center mw-300 tc main_title">피유</div>
-  <div class="col-12 tc mb30 main_desc">아이들의 식사 친구<br/>피유</div>
+  <div class="col-12 tc mb30 main_desc">아이들의 식사 메이트<br/>피유</div>
   <div class="col-12 mb50">
     <img src="@/assets/resource/img/main_contents_img.png" alt="피유 메인 이미지"/>
   </div>
@@ -15,7 +15,7 @@
         </a>
       </div>
       <div class="col-6 main_btn">
-        <a href="https://forms.gle/cVL1A7DMGjAUH52L6" target="_blank" class="col-12 main_btn_inner">
+        <a href="https://forms.gle/C6ZvDbZGL3E7joJo6" target="_blank" class="col-12 main_btn_inner">
           건의사항
         </a>
       </div>
