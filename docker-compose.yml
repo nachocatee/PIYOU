@@ -42,5 +42,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - database
+    volumes:
+      - ./backend/fastapi-server:/app
+  #    depends_on:
+  #      - database
+
+  vite:
+    restart: "always"
+    container_name: vite-container
+    build:
+      context: ./piyou-info
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
