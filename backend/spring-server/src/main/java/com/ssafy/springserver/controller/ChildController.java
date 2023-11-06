@@ -1,10 +1,10 @@
 package com.ssafy.springserver.controller;
+
 import com.ssafy.springserver.dto.ChildRequest;
 import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.service.ChildService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -48,15 +48,4 @@ public class ChildController {
     public ResponseEntity<ChildResponse> updateChild(@PathVariable UUID childId, @RequestBody ChildRequest child) {
         return ResponseEntity.ok(childService.updateChild(childId, child));
     }
-
-//    /**
-//     * 아이가 7일 굶으면 현재 status 피유 사망
-//     * schedule로 매일매일 체크
-//     *
-//     * @param childId 아이 id
-//     */
-//    @Scheduled(cron = "0 0 0 * * *")
-//    public void checkChild(@PathVariable UUID childId) {
-//        childService.checkChild(childId);
-//    }
 }
