@@ -1,4 +1,5 @@
 package com.ssafy.springserver.controller;
+
 import com.ssafy.springserver.dto.CollectedResponse;
 import com.ssafy.springserver.dto.StatusResponse;
 import com.ssafy.springserver.service.PiyouService;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/piyou")
