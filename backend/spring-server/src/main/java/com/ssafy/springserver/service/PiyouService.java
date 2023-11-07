@@ -29,10 +29,11 @@ public class PiyouService {
         return collectedList.stream().map(CollectedResponse::fromEntity).collect(Collectors.toList());
     }
 
-    public CollectedResponse createPiyou(UUID childId, Long piyouId) {
+    public CollectedResponse createPiyou(UUID childId, String piyouName) {
         Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
-        Piyou piyou = piyouRepository.findById(piyouId).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
+        Piyou piyou = piyouRepository.findByEngName(piyouName).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
         Collected collected = collectedRepository.findByChildAndPiyou(child, piyou).orElse(null);
+
         if (collected == null) {
             return CollectedResponse.fromEntity(collectedRepository.save(
                     Collected.builder()
