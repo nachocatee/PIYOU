@@ -3,6 +3,7 @@ package com.ssafy.springserver.dto;
 import com.ssafy.springserver.entity.Piyou;
 import lombok.Builder;
 import lombok.Value;
+
 /**
  * DTO for {@link Piyou}
  */

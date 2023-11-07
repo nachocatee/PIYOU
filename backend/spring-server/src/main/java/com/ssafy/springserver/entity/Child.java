@@ -34,6 +34,7 @@ public class Child {
 
     @OneToMany(mappedBy = "child", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Collected> collects;
+
     @PrePersist
     public void prePersist() {
         if (this.id == null) {

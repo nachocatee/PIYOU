@@ -1,4 +1,5 @@
 package com.ssafy.springserver.service;
+
 import com.ssafy.springserver.dto.ChildRequest;
 import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.dto.StatusResponse;
@@ -20,22 +21,29 @@ public class ChildService {
     private final ChildRepository childRepository;
     private final StatusRepository statusRepository;
     private final PiyouRepository piyouRepository;
+
     public ChildResponse createChild(ChildRequest childRequest) {
         Status status = statusRepository.save(new Status());
         Child child = childRepository.save(Child.builder().name(childRequest.getName()).status(status).build());
-        Piyou piyou = piyouRepository.findById(child.getStatus().getPiyouId()).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
+        Piyou piyou = piyouRepository.findById(child.getStatus().getPiyouId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
 
         return ChildResponse.fromEntity(child, StatusResponse.fromEntity(status, piyou.getEngName()));
     }
+
     public ChildResponse getChild(UUID childId) {
         Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
-        Piyou piyou = piyouRepository.findById(child.getStatus().getPiyouId()).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
+        Piyou piyou = piyouRepository.findById(child.getStatus().getPiyouId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
 
         return ChildResponse.fromEntity(child, StatusResponse.fromEntity(child.getStatus(), piyou.getEngName()));
     }
+
     public ChildResponse updateChild(UUID childId, ChildRequest child) {
-        Child childEntity = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
-        Piyou piyou = piyouRepository.findById(childEntity.getStatus().getPiyouId()).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
+        Child childEntity = childRepository.findById(childId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
+        Piyou piyou = piyouRepository.findById(childEntity.getStatus().getPiyouId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
 
         if (child.getName() != null) {
             childEntity.updateName(child.getName());
@@ -46,7 +54,8 @@ public class ChildService {
         }
 
         childRepository.save(childEntity);
-        return ChildResponse.fromEntity(childEntity, StatusResponse.fromEntity(childEntity.getStatus(), piyou.getEngName()));
+        return ChildResponse.fromEntity(childEntity,
+                StatusResponse.fromEntity(childEntity.getStatus(), piyou.getEngName()));
     }
 
     /**
@@ -64,6 +73,7 @@ public class ChildService {
         childRepository.save(child);
 
     }
+
     private void updateStarved(Child child) {
         if (child.getIsMeal()) {
             child.setStarved(0);

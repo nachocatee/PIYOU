@@ -1,4 +1,5 @@
 package com.ssafy.springserver.service;
+
 import com.ssafy.springserver.dto.CollectedResponse;
 import com.ssafy.springserver.dto.StatusResponse;
 import com.ssafy.springserver.entity.Child;
@@ -38,8 +39,7 @@ public class PiyouService {
                     Collected.builder()
                             .child(child)
                             .piyou(piyou)
-                            .build()
-            ));
+                            .build()));
         } else {
             throw new IllegalArgumentException("이미 등록된 피유입니다.");
         }

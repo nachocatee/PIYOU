@@ -29,6 +29,7 @@ public class Status {
     public void piyouDeath() {
         this.death = true;
     }
+
     @PrePersist
     private void prePersist() {
         this.piyouId = 1L;
