@@ -15,5 +15,9 @@ public class Hat {
     @Column(name = "hat_id", nullable = false)
     private Long id;
 
+    @Column(length = 20)
+    private String engName;
+
+    @Column(length = 20)
     private String name;
 }
