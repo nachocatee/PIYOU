@@ -30,7 +30,7 @@ public class Child {
     @Setter
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
-    private Status status ;
+    private Status status;
 
     @OneToMany(mappedBy = "child", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Collected> collects;
