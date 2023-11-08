@@ -3,14 +3,8 @@ package com.ssafy.springserver.service;
 import com.ssafy.springserver.dto.ChildRequest;
 import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.dto.StatusResponse;
-import com.ssafy.springserver.entity.Child;
-import com.ssafy.springserver.entity.Collected;
-import com.ssafy.springserver.entity.Piyou;
-import com.ssafy.springserver.entity.Status;
-import com.ssafy.springserver.repository.ChildRepository;
-import com.ssafy.springserver.repository.CollectedRepository;
-import com.ssafy.springserver.repository.PiyouRepository;
-import com.ssafy.springserver.repository.StatusRepository;
+import com.ssafy.springserver.entity.*;
+import com.ssafy.springserver.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +19,8 @@ public class ChildService {
     private final StatusRepository statusRepository;
     private final PiyouRepository piyouRepository;
     private final CollectedRepository collectedRepository;
+    private final HatRepository hatRepository;
+    private final CollectedHatRepository collectedHatRepository;
 
     @Transactional
     public ChildResponse createChild(ChildRequest childRequest) {
@@ -32,6 +28,16 @@ public class ChildService {
         Child child = childRepository.save(Child.builder().name(childRequest.getName()).status(status).build());
         Piyou piyou = piyouRepository.findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
+        Hat hat = hatRepository.findByName("hat_empty").orElseThrow(
+                () -> new IllegalArgumentException("해당 모자가 없습니다.")
+        );
+
+        collectedHatRepository.save(
+                CollectedHat.builder()
+                        .child(child)
+                        .hat(hat)
+                        .build()
+        );
 
         collectedRepository.save(
                 Collected.builder()
