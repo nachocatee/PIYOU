@@ -12,6 +12,7 @@ import com.ssafy.springserver.repository.PiyouRepository;
 import com.ssafy.springserver.repository.StatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,6 +31,7 @@ public class PiyouService {
         return collectedList.stream().map(CollectedResponse::fromEntity).collect(Collectors.toList());
     }
 
+    @Transactional
     public CollectedResponse createPiyou(UUID childId, String piyouName) {
         Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
         Piyou piyou = piyouRepository.findByEngName(piyouName).orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
@@ -46,6 +48,7 @@ public class PiyouService {
         }
     }
 
+    @Transactional
     public StatusResponse createCurrentPiyou(UUID childId, Long piyouId) {
         Status status = new Status();
         Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
