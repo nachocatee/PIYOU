@@ -28,11 +28,11 @@ public class HatController {
      * 아이 모자 등록
      *
      * @param childId 아이 식별자
-     * @param hatId   모자 식별자
+     * @param hatName   모자 식별자
      * @return 모자 정보
      */
-    @PostMapping("/{childId}/{hatId}")
-    public ResponseEntity<?> createHat(@PathVariable UUID childId, @PathVariable Long hatId) {
-        return ResponseEntity.ok(hatService.createHat(childId, hatId));
+    @PostMapping("/{childId}/{hatName}")
+    public ResponseEntity<?> createHat(@PathVariable UUID childId, @PathVariable String hatName) {
+        return ResponseEntity.ok(hatService.createHat(childId, hatName));
     }
 }
