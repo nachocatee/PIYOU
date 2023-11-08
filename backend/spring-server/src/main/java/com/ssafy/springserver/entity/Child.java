@@ -57,6 +57,10 @@ public class Child {
         this.experience %= 100;
     }
 
+    public void ateMeal() {
+        this.isMeal = true;
+    }
+
     public void minusExperience(Integer experience) {
         this.experience -= experience;
         if (this.experience < 0) {
