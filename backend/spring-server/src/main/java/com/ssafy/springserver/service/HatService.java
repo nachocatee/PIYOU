@@ -9,6 +9,7 @@ import com.ssafy.springserver.repository.CollectedHatRepository;
 import com.ssafy.springserver.repository.HatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +29,8 @@ public class HatService {
                 .map(collectedHat -> HatResponse.fromEntity(collectedHat.getHat()))
                 .collect(Collectors.toList());
     }
+
+    @Transactional
     public HatResponse createHat(UUID childId, Long hatId) {
         Child child = childRepository.findById(childId).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이를 찾을 수 없습니다.")
