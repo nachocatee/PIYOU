@@ -33,12 +33,12 @@ public class PiyouController {
      * 사용자가 피유를 얻었을 때 피유 도감에 등록
      *
      * @param childId 아이 id
-     * @param piyouId 피유 id
+     * @param piyouName 피유 id
      * @return 등록 결과
      */
-    @PostMapping("/{childId}/{piyouId}")
-    public ResponseEntity<CollectedResponse> createPiyou(@PathVariable UUID childId, @PathVariable Long piyouId) {
-        return ResponseEntity.ok(piyouService.createPiyou(childId, piyouId));
+    @PostMapping("/{childId}/{piyouName}")
+    public ResponseEntity<CollectedResponse> createPiyou(@PathVariable UUID childId, @PathVariable String piyouName) {
+        return ResponseEntity.ok(piyouService.createPiyou(childId, piyouName));
     }
 
     /**
