@@ -29,16 +29,17 @@ public class ChildService {
         Child child = childRepository.save(Child.builder().name(childRequest.getName()).status(status).build());
         Piyou piyou = piyouRepository.findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
-        Hat hat = hatRepository.findByName("hat_empty").orElseThrow(
-                () -> new IllegalArgumentException("해당 모자가 없습니다.")
-        );
+        List<String> hatNameList = List.of("hat_empty", "hat_santa3", "hat_cap");
+        List<Hat> hatList = hatRepository.findByNameIn(hatNameList);
 
-        collectedHatRepository.save(
-                CollectedHat.builder()
-                        .child(child)
-                        .hat(hat)
-                        .build()
-        );
+        for (Hat hat : hatList) {
+            collectedHatRepository.save(
+                    CollectedHat.builder()
+                            .child(child)
+                            .hat(hat)
+                            .build()
+            );
+        }
 
         collectedRepository.save(
                 Collected.builder()
