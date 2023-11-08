@@ -34,19 +34,6 @@ services:
         "--init-connect='SET NAMES utf8mb4;'"
       ]
 
-  fastapi:
-    restart: "always"
-    container_name: fastapi
-    build:
-      context: ./backend/fastapi-server
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./backend/fastapi-server:/app
-  #    depends_on:
-  #      - database
-
   vite:
     restart: "always"
     container_name: vite-container
