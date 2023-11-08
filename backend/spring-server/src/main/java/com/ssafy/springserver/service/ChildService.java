@@ -71,6 +71,7 @@ public class ChildService {
 
         if (child.getExperience() != null) {
             childEntity.updateExperience(child.getExperience());
+            childEntity.ateMeal();
         }
 
         childRepository.save(childEntity);
