@@ -32,12 +32,12 @@ public class HatService {
     }
 
     @Transactional
-    public CollectedHatResponse createHat(UUID childId, Long hatId) {
+    public CollectedHatResponse createHat(UUID childId, String hatName) {
         Child child = childRepository.findById(childId).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이를 찾을 수 없습니다.")
         );
 
-        Hat hat = hatRepository.findById(hatId).orElseThrow(
+        Hat hat = hatRepository.findByName(hatName).orElseThrow(
                 () -> new IllegalArgumentException("해당 모자를 찾을 수 없습니다.")
         );
 
