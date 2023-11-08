@@ -56,4 +56,11 @@ public class Child {
         this.level += this.experience / 100;
         this.experience %= 100;
     }
+
+    public void minusExperience(Integer experience) {
+        this.experience -= experience;
+        if (this.experience < 0) {
+            this.experience = 0;
+        }
+    }
 }

@@ -5,6 +5,7 @@ import com.ssafy.springserver.dto.ChildResponse;
 import com.ssafy.springserver.service.ChildService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -47,5 +48,14 @@ public class ChildController {
     @PutMapping("/{childId}")
     public ResponseEntity<ChildResponse> updateChild(@PathVariable UUID childId, @RequestBody ChildRequest child) {
         return ResponseEntity.ok(childService.updateChild(childId, child));
+    }
+
+    /**
+     * isMeal이 false인 아이의 경험치를 4 감소, scheduler를 사용해서 매일 00:00:00에 실행
+     */
+    @Scheduled(cron = "0 0 0 * * *")
+    @PutMapping("/exp")
+    public void updateChildExp() {
+        childService.updateChildExp();
     }
 }
