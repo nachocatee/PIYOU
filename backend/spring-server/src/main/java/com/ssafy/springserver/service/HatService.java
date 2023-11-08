@@ -1,5 +1,6 @@
 package com.ssafy.springserver.service;
 
+import com.ssafy.springserver.dto.CollectedHatResponse;
 import com.ssafy.springserver.dto.HatResponse;
 import com.ssafy.springserver.entity.Child;
 import com.ssafy.springserver.entity.CollectedHat;
@@ -31,7 +32,7 @@ public class HatService {
     }
 
     @Transactional
-    public HatResponse createHat(UUID childId, Long hatId) {
+    public CollectedHatResponse createHat(UUID childId, Long hatId) {
         Child child = childRepository.findById(childId).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이를 찾을 수 없습니다.")
         );
@@ -49,6 +50,6 @@ public class HatService {
                 .child(child)
                 .hat(hat)
                 .build());
-        return HatResponse.fromEntity(createCollectHat.getHat());
+        return CollectedHatResponse.fromEntity(createCollectHat);
     }
 }
