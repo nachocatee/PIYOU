@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
   <div class="col-12">
     <div class="col-12 mb15 pt10 pb28 col-center mw-300 tc main_title">피유</div>
