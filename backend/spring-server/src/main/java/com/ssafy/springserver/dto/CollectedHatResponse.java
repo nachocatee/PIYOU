@@ -3,6 +3,7 @@ package com.ssafy.springserver.dto;
 import com.ssafy.springserver.entity.CollectedHat;
 import lombok.Builder;
 import lombok.Value;
+
 /**
  * DTO for {@link com.ssafy.springserver.entity.CollectedHat}
  */

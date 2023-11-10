@@ -26,34 +26,35 @@ public class ChildService {
     @Transactional
     public ChildResponse createChild(ChildRequest childRequest) {
         Status status = statusRepository.save(new Status());
-        Child child = childRepository.save(Child.builder().name(childRequest.getName()).status(status).build());
+        Child child = childRepository.save(Child.builder()
+                                                   .name(childRequest.getName())
+                                                   .status(status)
+                                                   .build());
         Piyou piyou = piyouRepository.findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
         List<String> hatNameList = List.of("hat_empty", "hat_santa3", "hat_cap");
         List<Hat> hatList = hatRepository.findByNameIn(hatNameList);
 
         for (Hat hat : hatList) {
-            collectedHatRepository.save(
-                    CollectedHat.builder()
-                            .child(child)
-                            .hat(hat)
-                            .build()
-            );
+            collectedHatRepository.save(CollectedHat.builder()
+                                                .child(child)
+                                                .hat(hat)
+                                                .build());
         }
 
-        collectedRepository.save(
-                Collected.builder()
-                        .child(child)
-                        .piyou(piyou)
-                        .build()
-        );
+        collectedRepository.save(Collected.builder()
+                                         .child(child)
+                                         .piyou(piyou)
+                                         .build());
 
         return ChildResponse.fromEntity(child, StatusResponse.fromEntity(status, piyou.getEngName()));
     }
 
     public ChildResponse getChild(UUID childId) {
-        Child child = childRepository.findById(childId).orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
-        Piyou piyou = piyouRepository.findById(child.getStatus().getPiyouId())
+        Child child = childRepository.findById(childId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
+        Piyou piyou = piyouRepository.findById(child.getStatus()
+                                                       .getPiyouId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
 
         return ChildResponse.fromEntity(child, StatusResponse.fromEntity(child.getStatus(), piyou.getEngName()));
@@ -63,7 +64,8 @@ public class ChildService {
     public ChildResponse updateChild(UUID childId, ChildRequest child) {
         Child childEntity = childRepository.findById(childId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
-        Piyou piyou = piyouRepository.findById(childEntity.getStatus().getPiyouId())
+        Piyou piyou = piyouRepository.findById(childEntity.getStatus()
+                                                       .getPiyouId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
 
         if (child.getName() != null) {
@@ -77,7 +79,7 @@ public class ChildService {
 
         childRepository.save(childEntity);
         return ChildResponse.fromEntity(childEntity,
-                StatusResponse.fromEntity(childEntity.getStatus(), piyou.getEngName()));
+                                        StatusResponse.fromEntity(childEntity.getStatus(), piyou.getEngName()));
     }
     public void updateChildExp() {
         List<Child> childList = childRepository.findAllByIsMealFalse();

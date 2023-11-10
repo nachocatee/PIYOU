@@ -28,7 +28,7 @@ public class HatController {
      * 아이 모자 등록
      *
      * @param childId 아이 식별자
-     * @param hatName   모자 식별자
+     * @param hatName 모자 식별자
      * @return 모자 정보
      */
     @PostMapping("/{childId}/{hatName}")

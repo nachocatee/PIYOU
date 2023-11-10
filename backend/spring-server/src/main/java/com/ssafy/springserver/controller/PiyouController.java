@@ -32,7 +32,7 @@ public class PiyouController {
      * 피유 도감 등록
      * 사용자가 피유를 얻었을 때 피유 도감에 등록
      *
-     * @param childId 아이 id
+     * @param childId   아이 id
      * @param piyouName 피유 id
      * @return 등록 결과
      */
