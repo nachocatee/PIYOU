@@ -38,6 +38,6 @@ out/
 ### VS Code ###
 .vscode/
 
-src/main/resources/piyou-98719-firebase-adminsdk-uk9k8-f2052f9125.json
+src/main/resources/*.json
 
 src/main/resources/application.yml
