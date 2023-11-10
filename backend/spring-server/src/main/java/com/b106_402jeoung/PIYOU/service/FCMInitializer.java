@@ -21,8 +21,8 @@ public class FCMInitializer {
     @PostConstruct
     public void initialize() {
         try {
-            FirebaseOptions options = FirebaseOptions.builder().setCredentials(
-                            GoogleCredentials.fromStream(new ClassPathResource(FCM_KEY_PATH).getInputStream()))
+            FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(new ClassPathResource(FCM_KEY_PATH).getInputStream()))
                     .build();
 
             if (FirebaseApp.getApps()
