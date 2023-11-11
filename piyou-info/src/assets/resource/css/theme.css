@@ -18,3 +18,5 @@ background-image: url("../img/main_btn_bg_img_000.png"); background-size: cover;
 .info_list > li:last-child{margin-right: 0;}
 .info_list > li > a{display: inline-block; box-sizing: border-box; background-color: #fff; padding: 10px; border-radius: 10px; overflow: hidden; transition: all 0.3s ease;}
 .info_list > li > a > img{max-width: 35px;}
+
+.representative_info{font-size: 13px; font-size: 1.3rem; line-height: 25px; line-height: 2.5rem; font-weight: 400; letter-spacing: -0.025em; color: #999;}
