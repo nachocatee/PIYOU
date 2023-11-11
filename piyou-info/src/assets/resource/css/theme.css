@@ -4,12 +4,12 @@
 .main_desc{font-size: 20px; font-size: 2.0rem; line-height: 26px; line-height: 2.6rem; font-weight: 700; letter-spacing: -0.025em; color: #525252;}
 .main_btn_con{width: calc(100% + 27px); margin-left: -27px;}
 .main_btn{padding-left: 27px; margin-bottom: 20px;}
-//.main_btn:nth-child(2n + 1){clear: left;}
+.main_btn:nth-child(2n + 1){clear: left;}
 .main_btn:nth-last-child(2){margin-bottom: 0;}
 .main_btn:last-child{margin-bottom: 0;}
 .main_btn_inner{text-align: center; padding-top: 7px; padding-bottom: 7px; font-size: 20px; font-size: 2.0rem; line-height: 26px; line-height: 2.6rem; font-weight: 700; letter-spacing: -0.025em; color: #fff;
 background-image: url("../img/main_btn_bg_img_000.png"); background-size: cover; background-position: center center; background-repeat: no-repeat;}
-//.main_btn.type_2 .main_btn_inner{ font-size: 24px; font-size: 2.4rem; line-height: 30px; line-height: 3.0rem; padding-top: 21px; padding-bottom: 21px; background-image: url("../img/main_btn_bg_img_001.png");}
+.main_btn.type_2 .main_btn_inner{ font-size: 24px; font-size: 2.4rem; line-height: 30px; line-height: 3.0rem; padding-top: 21px; padding-bottom: 21px; background-image: url("../img/main_btn_bg_img_001.png");}
 .main_btn.type_2 .main_btn_inner{padding: 10px; display: flex; justify-content: center; align-items: center; background-color: #fff; border-radius: 10px; background-image: none; font-family: 'Product Sans Medium', sans-serif; color: #000;}
 .main_btn.type_2 .main_btn_inner > img{margin-right: 10px;}
 
