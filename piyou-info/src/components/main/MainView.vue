@@ -31,7 +31,7 @@
           </a>
         </div>
       </div>
-      <ul class="col-12 info_list">
+      <ul class="col-12 info_list mb20">
         <li>
           <a href="https://instagram.com/piyou_app?utm_source=qr">
             <img src="@/assets/resource/img/instagram_icon.png" alt="인스타그램 아이콘" />
@@ -48,7 +48,11 @@
           </a>
         </li>
       </ul>
+      <div class="col-12 representative_info">
+        대표자 : 최하영<br/>
+        E-mail : trappist96@gmail.com<br/>
+        Phone : 010-6422-7410
+      </div>
     </div>
-
   </div>
 </template>
