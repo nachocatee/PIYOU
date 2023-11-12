@@ -40,12 +40,4 @@ public class PiyouController {
     public ResponseEntity<CollectedResponse> createPiyou(@PathVariable UUID childId, @PathVariable String piyouName) {
         return ResponseEntity.ok(piyouService.createPiyou(childId, piyouName));
     }
-
-    /**
-     * 현재 키울 피유 등록
-     */
-    @PostMapping("/{childId}/current/{piyouId}")
-    public ResponseEntity<StatusResponse> createCurrentPiyou(@PathVariable UUID childId, @PathVariable Long piyouId) {
-        return ResponseEntity.ok(piyouService.createCurrentPiyou(childId, piyouId));
-    }
 }
