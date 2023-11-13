@@ -1,5 +1,6 @@
 package com.b106_402jeoung.PIYOU.controller;
 
+import com.b106_402jeoung.PIYOU.dto.PushRequest;
 import com.b106_402jeoung.PIYOU.service.PushService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +16,10 @@ import java.util.HashMap;
 public class NotificationController {
     private final PushService pushService;
 
-    @PostMapping("/test")
-    public void test(@RequestBody HashMap<String, String> params) {
-        pushService.sendPush(params);
-    }
 
     @PostMapping("/register")
-    public String registerToken(@RequestBody HashMap<String, String> params) {
-        pushService.sendPush(params);
+    public String registerToken(@RequestBody PushRequest pushRequest) {
+        pushService.sendPush(pushRequest);
 
         return "등록완료";
     }
