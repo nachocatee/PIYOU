@@ -23,6 +23,8 @@ public class Child {
 
     private Integer experience;
 
+    private String token;
+
     @Setter
     private Integer starved;
     private Boolean isMeal;
