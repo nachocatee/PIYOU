@@ -81,11 +81,20 @@ public class ChildService {
         return ChildResponse.fromEntity(childEntity,
                                         StatusResponse.fromEntity(childEntity.getStatus(), piyou.getEngName()));
     }
+
     public void updateChildExp() {
         List<Child> childList = childRepository.findAllByIsMealFalse();
         for (Child child : childList) {
             child.minusExperience(4);
             childRepository.save(child);
         }
+    }
+
+    public void updateChildToken(UUID childId, String token) {
+        Child child = childRepository.findById(childId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
+
+        child.setToken(token);
+        childRepository.save(child);
     }
 }
