@@ -1,5 +1,6 @@
 package com.b106_402jeoung.PIYOU.service;
 
+import com.b106_402jeoung.PIYOU.dto.PushRequest;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 
 @Service
 public class PushService {
@@ -20,7 +20,7 @@ public class PushService {
     private final String urlVal = "https://yusinsolution.com";
 
     @SuppressWarnings("unchecked")
-    public void sendPush(HashMap<String, String> params) {
+    public void sendPush(PushRequest pushRequest) {
         StringBuilder urlBuilder = new StringBuilder(sendUrlVal);
         try {
             URL url = new URL(urlBuilder.toString());
@@ -34,21 +34,21 @@ public class PushService {
             JSONObject dataParams = new JSONObject();
             JSONObject notificationParams = new JSONObject();
 
-            String tokenList = params.get("tokenList");
+            String tokenList = pushRequest.getTokenList();
 
             apiParams.put("to", tokenList);
 
-            String title = params.get("title");
+            String title = pushRequest.getTitle();
 
             dataParams.put("title", title);
             notificationParams.put("title", title);
 
-            String message = params.get("message");
+            String message = pushRequest.getMessage();
 
             dataParams.put("message", message);
             notificationParams.put("body", message);
 
-            String intent = params.get("intent");
+            String intent = pushRequest.getIntent();
 
             dataParams.put("intent", urlVal + intent);
 
