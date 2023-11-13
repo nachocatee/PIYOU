@@ -18,12 +18,14 @@ public class ChildRequest {
     Integer experience;
     Integer level;
     StatusRequest status;
+    String token;
 
     public ChildRequest toEntity() {
         return ChildRequest.builder()
                 .name(name)
                 .experience(experience)
                 .status(status)
+                .token(token)
                 .build();
     }
 }
