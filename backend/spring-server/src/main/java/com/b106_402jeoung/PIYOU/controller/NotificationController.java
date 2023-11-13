@@ -19,4 +19,11 @@ public class NotificationController {
     public void test(@RequestBody HashMap<String, String> params) {
         pushService.sendPush(params);
     }
+
+    @PostMapping("/register")
+    public String registerToken(@RequestBody HashMap<String, String> params) {
+        pushService.sendPush(params);
+
+        return "등록완료";
+    }
 }
