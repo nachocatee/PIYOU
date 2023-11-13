@@ -58,4 +58,15 @@ public class ChildController {
     public void updateChildExp() {
         childService.updateChildExp();
     }
+
+    /**
+     * 아이 토큰 등록
+     *
+     * @param childId 아이 id
+     * @param token   토큰
+     */
+    @PutMapping("/{childId}/token")
+    public void updateChildToken(@PathVariable UUID childId, @RequestBody String token) {
+        childService.updateChildToken(childId, token);
+    }
 }
