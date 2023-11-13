@@ -23,6 +23,7 @@ public class Child {
 
     private Integer experience;
 
+    @Setter
     private String token;
 
     @Setter
