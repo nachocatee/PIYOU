@@ -14,6 +14,12 @@
           </a>
         </div>
         <div class="col-12 main_btn type_2">
+          <a href="https://apps.apple.com/kr/app/%ED%94%BC%EC%9C%A0-piyou/id6471813826" class="col-12 main_btn_inner">
+            <img src="@/assets/resource/img/apple_store_icon.png" alt="애플스토어 아이콘" style="width: 32px; margin-right: 15px;" />
+            <span style="font-family: 'San Francisco';">App Store</span>
+          </a>
+        </div>
+        <div class="col-12 main_btn type_2">
           <a href="https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000772452"
             class="col-12 main_btn_inner">
             <img src="@/assets/resource/img/one_store_icon.png" alt="원스토어 아이콘" style="width: 32px;" />
