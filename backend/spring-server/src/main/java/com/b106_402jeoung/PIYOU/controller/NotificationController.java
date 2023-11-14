@@ -22,8 +22,8 @@ public class NotificationController {
     }
 
     @PostMapping("/send")
-    public String sendPush(@RequestBody PushRequest pushRequest, @RequestBody ChildNotiRequest childNotiRequest) {
-        pushService.sendPush(pushRequest, childNotiRequest);
+    public String sendPush(@RequestBody PushRequest pushRequest) {
+        pushService.sendPush(pushRequest);
 
         return "등록완료";
     }
