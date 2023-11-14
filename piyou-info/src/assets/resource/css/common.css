@@ -1,24 +1,27 @@
 /*폰트 임포트*/
-@font-face {
-    font-family: 'GmarketSans';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GmarketSans';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'GmarketSans';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-}
+@font-face {font-family: 'GmarketSans'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff'); font-weight: 300; font-style: normal;}
+@font-face {font-family: 'GmarketSans'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: 500; font-style: normal;}
+@font-face {font-family: 'GmarketSans'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: 700; font-style: normal;}
 
-html, body{background-color: #F3F3FB; font-size: 10px; color: #000; font-family: 'GmarketSans', sans-serif; letter-spacing: -0.0025em;}
+/**
+ * http://applemusic.tumblr.com/
+ * https://jsfiddle.net/xq56dmrh/
+ */
+
+/** Ultra Light */
+@font-face {font-family: 'San Francisco'; font-weight: 100; src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff");}
+/** Thin */
+@font-face {font-family: 'San Francisco'; font-weight: 200; src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");}  
+/** Regular */
+@font-face {font-family: 'San Francisco'; font-weight: 400; src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");}
+/** Medium */
+@font-face {font-family: 'San Francisco'; font-weight: 500; src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff");}
+/** Semi Bold */
+@font-face {font-family: 'San Francisco'; font-weight: 600; src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff");}
+/** Bold */ 
+@font-face {font-family: 'San Francisco'; font-weight: 700; src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");}
+
+html, body{background-color: #F3F3FB; font-size: 10px; color: #000; font-family: 'GmarketSans', 'San Francisco', sans-serif; letter-spacing: -0.0025em;}
 * { margin: 0; padding: 0; box-sizing: border-box; list-style: none;}
 a { text-decoration: none; color: inherit;}
 input{-webkit-appearance: none; outline: none;}
