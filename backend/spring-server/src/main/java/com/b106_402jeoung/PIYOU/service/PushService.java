@@ -1,9 +1,6 @@
 package com.b106_402jeoung.PIYOU.service;
 
-import com.b106_402jeoung.PIYOU.dto.ChildNotiRequest;
-import com.b106_402jeoung.PIYOU.dto.ChildNotiResponse;
-import com.b106_402jeoung.PIYOU.dto.NotificationResponse;
-import com.b106_402jeoung.PIYOU.dto.PushRequest;
+import com.b106_402jeoung.PIYOU.dto.*;
 import com.b106_402jeoung.PIYOU.entity.Child;
 import com.b106_402jeoung.PIYOU.entity.ChildNoti;
 import com.b106_402jeoung.PIYOU.entity.Notification;
@@ -107,10 +104,9 @@ public class PushService {
     }
 
     @Transactional
-    public NotificationResponse registerPush(ChildNotiRequest childNotiRequest) {
-        Notification notification = notificationRepository.save(childNotiRequest.getNotification()
-                                                                        .toEntity());
-        Child child = childRepository.findById(childNotiRequest.getChildId())
+    public NotificationResponse registerPush(NotificationRequest notificationRequest, UUID childId) {
+        Notification notification = notificationRepository.save(notificationRequest.toEntity());
+        Child child = childRepository.findById(childId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
 
         childNotiRepository.save(ChildNoti.builder()
