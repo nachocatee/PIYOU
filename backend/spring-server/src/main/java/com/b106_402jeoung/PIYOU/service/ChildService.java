@@ -47,7 +47,7 @@ public class ChildService {
                                          .piyou(piyou)
                                          .build());
 
-        return ChildResponse.fromEntity(child, StatusResponse.fromEntity(status, piyou.getEngName()));
+        return ChildResponse.of(child, StatusResponse.of(status, piyou.getEngName()));
     }
 
     public ChildResponse getChild(UUID childId) {
@@ -57,7 +57,7 @@ public class ChildService {
                                                        .getPiyouId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
 
-        return ChildResponse.fromEntity(child, StatusResponse.fromEntity(child.getStatus(), piyou.getEngName()));
+        return ChildResponse.of(child, StatusResponse.of(child.getStatus(), piyou.getEngName()));
     }
 
     @Transactional
@@ -78,8 +78,8 @@ public class ChildService {
         }
 
         childRepository.save(childEntity);
-        return ChildResponse.fromEntity(childEntity,
-                                        StatusResponse.fromEntity(childEntity.getStatus(), piyou.getEngName()));
+        return ChildResponse.of(childEntity,
+                                StatusResponse.of(childEntity.getStatus(), piyou.getEngName()));
     }
 
     public void updateChildExp() {
