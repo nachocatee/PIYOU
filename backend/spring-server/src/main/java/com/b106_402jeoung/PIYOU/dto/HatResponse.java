@@ -14,7 +14,7 @@ public class HatResponse {
     String engName;
     String name;
 
-    public static HatResponse fromEntity(Hat hat) {
+    public static HatResponse of(Hat hat) {
         return HatResponse.builder()
                 .id(hat.getId())
                 .engName(hat.getEngName())

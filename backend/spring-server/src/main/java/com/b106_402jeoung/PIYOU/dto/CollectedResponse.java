@@ -13,10 +13,10 @@ public class CollectedResponse {
     Long id;
     PiyouResponse piyou;
 
-    public static CollectedResponse fromEntity(Collected collected) {
+    public static CollectedResponse of(Collected collected) {
         return CollectedResponse.builder()
                 .id(collected.getId())
-                .piyou(PiyouResponse.fromEntity(collected.getPiyou()))
+                .piyou(PiyouResponse.of(collected.getPiyou()))
                 .build();
     }
 }
