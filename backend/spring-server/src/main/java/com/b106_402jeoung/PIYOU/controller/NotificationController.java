@@ -1,6 +1,6 @@
 package com.b106_402jeoung.PIYOU.controller;
 
-import com.b106_402jeoung.PIYOU.dto.ChildNotiRequest;
+import com.b106_402jeoung.PIYOU.dto.NotificationRequest;
 import com.b106_402jeoung.PIYOU.dto.PushRequest;
 import com.b106_402jeoung.PIYOU.service.PushService;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +28,9 @@ public class NotificationController {
         return "등록완료";
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerPush(@RequestBody ChildNotiRequest childNotiRequest) {
-        return ResponseEntity.ok(pushService.registerPush(childNotiRequest));
+    @PostMapping("/register/{childId}")
+    public ResponseEntity<?> registerPush(@RequestBody NotificationRequest notificationRequest, @PathVariable UUID childId) {
+        return ResponseEntity.ok(pushService.registerPush(notificationRequest, childId));
     }
 
     @DeleteMapping("/{notiId}")
