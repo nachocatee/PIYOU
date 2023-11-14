@@ -39,7 +39,7 @@ public class PushService {
     private final ChildNotiRepository childNotiRepository;
 
     @SuppressWarnings("unchecked")
-    public void sendPush(PushRequest pushRequest, ChildNotiRequest childNotiRequest) {
+    public void sendPush(PushRequest pushRequest) {
         StringBuilder urlBuilder = new StringBuilder(sendUrlVal);
         try {
             URL url = new URL(urlBuilder.toString());
