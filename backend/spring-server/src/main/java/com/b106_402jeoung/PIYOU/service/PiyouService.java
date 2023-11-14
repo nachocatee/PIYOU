@@ -40,9 +40,9 @@ public class PiyouService {
 
         if (collected == null) {
             return CollectedResponse.of(collectedRepository.save(Collected.builder()
-                                                                                 .child(child)
-                                                                                 .piyou(piyou)
-                                                                                 .build()));
+                                                                         .child(child)
+                                                                         .piyou(piyou)
+                                                                         .build()));
         } else {
             throw new IllegalArgumentException("이미 등록된 피유입니다.");
         }

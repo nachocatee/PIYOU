@@ -8,5 +8,6 @@ import java.util.UUID;
 
 public interface ChildNotiRepository extends JpaRepository<ChildNoti, Long> {
     void deleteByNotificationId(Long id);
+
     List<ChildNoti> findByChildIdOrderByNotificationTimeAsc(UUID id);
 }

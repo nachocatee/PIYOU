@@ -78,8 +78,7 @@ public class ChildService {
         }
 
         childRepository.save(childEntity);
-        return ChildResponse.of(childEntity,
-                                StatusResponse.of(childEntity.getStatus(), piyou.getEngName()));
+        return ChildResponse.of(childEntity, StatusResponse.of(childEntity.getStatus(), piyou.getEngName()));
     }
 
     public void updateChildExp() {

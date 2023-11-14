@@ -33,10 +33,10 @@ public class PushService {
     private final ChildRepository childRepository;
     private final NotificationRepository notificationRepository;
     private final String sendUrlVal = "https://fcm.googleapis.com/fcm/send";
-    @Value("${fcm.key.token}")
-    private String apiKeyValue;
     private final String urlVal = "https://yusinsolution.com";
     private final ChildNotiRepository childNotiRepository;
+    @Value("${fcm.key.token}")
+    private String apiKeyValue;
 
     @SuppressWarnings("unchecked")
     public void sendPush(PushRequest pushRequest) {
