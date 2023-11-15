@@ -28,7 +28,7 @@ public class NotificationController {
         return "등록완료";
     }
 
-    @PostMapping("/register/{childId}")
+    @PostMapping("/{childId}")
     public ResponseEntity<?> registerPush(@RequestBody NotificationRequest notificationRequest,
                                           @PathVariable UUID childId) {
         return ResponseEntity.ok(pushService.registerPush(notificationRequest, childId));

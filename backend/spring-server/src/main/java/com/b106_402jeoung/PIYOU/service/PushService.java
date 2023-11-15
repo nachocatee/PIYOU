@@ -1,6 +1,5 @@
 package com.b106_402jeoung.PIYOU.service;
 
-import com.b106_402jeoung.PIYOU.dto.ChildNotiResponse;
 import com.b106_402jeoung.PIYOU.dto.NotificationRequest;
 import com.b106_402jeoung.PIYOU.dto.NotificationResponse;
 import com.b106_402jeoung.PIYOU.dto.PushRequest;
@@ -118,11 +117,11 @@ public class PushService {
         return NotificationResponse.of(notification);
     }
 
-    public List<ChildNotiResponse> getPush(UUID childId) {
+    public List<NotificationResponse> getPush(UUID childId) {
         List<ChildNoti> childNotiList = childNotiRepository.findByChildIdOrderByNotificationTimeAsc(childId);
 
         return childNotiList.stream()
-                .map(ChildNotiResponse::of)
+                .map(childNoti -> NotificationResponse.of(childNoti.getNotification()))
                 .collect(Collectors.toList());
     }
 }
