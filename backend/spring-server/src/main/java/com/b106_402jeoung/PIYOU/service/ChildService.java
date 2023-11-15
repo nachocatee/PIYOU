@@ -6,9 +6,12 @@ import com.b106_402jeoung.PIYOU.dto.StatusResponse;
 import com.b106_402jeoung.PIYOU.entity.*;
 import com.b106_402jeoung.PIYOU.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,12 +19,16 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ChildService {
 
+    @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
+    private int batchSize;
     private final ChildRepository childRepository;
     private final StatusRepository statusRepository;
     private final PiyouRepository piyouRepository;
     private final CollectedRepository collectedRepository;
     private final HatRepository hatRepository;
     private final CollectedHatRepository collectedHatRepository;
+    @PersistenceContext
+    private final EntityManager entityManager;
 
     @Transactional
     public ChildResponse createChild(ChildRequest childRequest) {
@@ -81,12 +88,20 @@ public class ChildService {
         return ChildResponse.of(childEntity, StatusResponse.of(childEntity.getStatus(), piyou.getEngName()));
     }
 
+    @Transactional
     public void updateChildExp() {
-        List<Child> childList = childRepository.findAllByIsMealFalse();
+        List<Child> childList = childRepository.findAllByName("batch_test");
+        int count = 0;
+
         for (Child child : childList) {
             child.minusExperience(4);
-            childRepository.save(child);
+            if (++count % batchSize == 0) {
+                entityManager.flush();
+            }
         }
+
+        entityManager.flush();
+        entityManager.clear();
     }
 
     public void updateChildToken(UUID childId, String token) {
@@ -95,5 +110,21 @@ public class ChildService {
 
         child.setToken(token);
         childRepository.save(child);
+    }
+
+    @Transactional
+    public void updateChildIsMeal() {
+        List<Child> childList = childRepository.findAll();
+        int count = 0;
+
+        for (Child child : childList) {
+            child.isHungry();
+            if (++count % batchSize == 0) {
+                entityManager.flush();
+            }
+        }
+
+        entityManager.flush();
+        entityManager.clear();
     }
 }
