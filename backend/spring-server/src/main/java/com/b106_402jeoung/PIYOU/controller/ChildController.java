@@ -59,6 +59,12 @@ public class ChildController {
         childService.updateChildExp();
     }
 
+    @Scheduled(cron = "0 0 1 * * *")
+    @PutMapping("/isMeal")
+    public void updateChildIsMeal() {
+        childService.updateChildIsMeal();
+    }
+
     /**
      * 아이 토큰 등록
      *
