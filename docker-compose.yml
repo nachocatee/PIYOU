@@ -16,13 +16,14 @@ services:
     restart: "always"
     image: mysql:latest
     container_name: database
-    # 공식 문서를 보고 환경 설정 변수 확인
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=root
       - MYSQL_USER=root
       - MYSQL_DATABASE=piyou
-      - TZ=Asia/Seoul - MYSQL_CHARSET=utf8mb4 - MYSQL_COLLATION=utf8mb4_unicode_ci
+      - TZ=Asia/Seoul
+      - MYSQL_CHARSET=utf8mb4
+      - MYSQL_COLLATION=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
