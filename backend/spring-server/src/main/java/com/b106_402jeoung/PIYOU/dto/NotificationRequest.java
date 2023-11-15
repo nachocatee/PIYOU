@@ -4,6 +4,8 @@ import com.b106_402jeoung.PIYOU.entity.Notification;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalTime;
+
 /**
  * DTO for {@link com.b106_402jeoung.PIYOU.entity.Notification}
  */
@@ -12,7 +14,7 @@ import lombok.Value;
 @Builder
 public class NotificationRequest {
     Long id;
-    String time;
+    LocalTime time;
 
     public Notification toEntity() {
         return Notification.builder()

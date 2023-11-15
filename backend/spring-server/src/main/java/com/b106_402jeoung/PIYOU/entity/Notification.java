@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 @Getter
 @Builder
@@ -18,5 +19,5 @@ public class Notification {
     @Column(name = "notification_id", nullable = false)
     private Long id;
 
-    private String time;
+    private LocalTime time;
 }
