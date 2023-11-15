@@ -56,8 +56,7 @@
       </ul>
       <div class="col-12 representative_info">
         대표자 : 최하영<br/>
-        E-mail : trappist96@gmail.com<br/>
-        Phone : 010-6422-7410
+        E-mail : trappist96@gmail.com
       </div>
     </div>
   </div>
