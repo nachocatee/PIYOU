@@ -5,7 +5,6 @@ import com.b106_402jeoung.PIYOU.dto.ChildResponse;
 import com.b106_402jeoung.PIYOU.service.ChildService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -49,9 +48,6 @@ public class ChildController {
     public ResponseEntity<ChildResponse> updateChild(@PathVariable UUID childId, @RequestBody ChildRequest child) {
         return ResponseEntity.ok(childService.updateChild(childId, child));
     }
-
-
-
 
 
     /**

@@ -15,12 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SchedulerService {
     private final ChildRepository childRepository;
-
-    @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
-    private int batchSize;
-
     @PersistenceContext
     private final EntityManager entityManager;
+    @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
+    private int batchSize;
 
     @Transactional
     public void updateChildExp() {

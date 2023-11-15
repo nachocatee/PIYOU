@@ -29,7 +29,8 @@ public class NotificationController {
     }
 
     @PostMapping("/register/{childId}")
-    public ResponseEntity<?> registerPush(@RequestBody NotificationRequest notificationRequest, @PathVariable UUID childId) {
+    public ResponseEntity<?> registerPush(@RequestBody NotificationRequest notificationRequest,
+                                          @PathVariable UUID childId) {
         return ResponseEntity.ok(pushService.registerPush(notificationRequest, childId));
     }
 

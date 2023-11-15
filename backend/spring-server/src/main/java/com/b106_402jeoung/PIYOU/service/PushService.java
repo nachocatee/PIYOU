@@ -1,6 +1,9 @@
 package com.b106_402jeoung.PIYOU.service;
 
-import com.b106_402jeoung.PIYOU.dto.*;
+import com.b106_402jeoung.PIYOU.dto.ChildNotiResponse;
+import com.b106_402jeoung.PIYOU.dto.NotificationRequest;
+import com.b106_402jeoung.PIYOU.dto.NotificationResponse;
+import com.b106_402jeoung.PIYOU.dto.PushRequest;
 import com.b106_402jeoung.PIYOU.entity.Child;
 import com.b106_402jeoung.PIYOU.entity.ChildNoti;
 import com.b106_402jeoung.PIYOU.entity.Notification;
@@ -8,7 +11,6 @@ import com.b106_402jeoung.PIYOU.repository.ChildNotiRepository;
 import com.b106_402jeoung.PIYOU.repository.ChildRepository;
 import com.b106_402jeoung.PIYOU.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PushService {
