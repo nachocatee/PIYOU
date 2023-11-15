@@ -18,6 +18,7 @@ public class ChildResponse {
     Integer experience;
     StatusResponse status;
 
+
     public static ChildResponse of(Child child) {
         return ChildResponse.builder()
                 .id(child.getId())

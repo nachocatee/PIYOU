@@ -25,12 +25,14 @@ public class ChildService {
     @Transactional
     public ChildResponse createChild(ChildRequest childRequest) {
         Status status = statusRepository.save(new Status());
-        Child child = childRepository.save(Child.builder()
-                                                   .name(childRequest.getName())
-                                                   .status(status)
-                                                   .build());
+        Child child = childRepository.saveAndFlush(Child.builder()
+                                                           .name(childRequest.getName())
+                                                           .status(status)
+                                                           .token(childRequest.getToken())
+                                                           .build());
         Piyou piyou = piyouRepository.findById(1L)
                 .orElseThrow(() -> new IllegalArgumentException("해당 피유가 없습니다."));
+
         List<String> hatNameList = List.of("hat_empty", "hat_santa3", "hat_cap");
         List<Hat> hatList = hatRepository.findByNameIn(hatNameList);
 

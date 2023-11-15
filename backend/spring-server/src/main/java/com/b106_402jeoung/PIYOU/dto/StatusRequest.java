@@ -11,6 +11,10 @@ import lombok.Value;
 @Builder
 public class StatusRequest {
     Long piyouId;
-    Long hungry;
-    Long health;
+
+    public Status toEntity() {
+        return Status.builder()
+                .piyouId(piyouId)
+                .build();
+    }
 }
