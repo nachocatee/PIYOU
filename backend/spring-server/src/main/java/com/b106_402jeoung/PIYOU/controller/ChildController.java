@@ -50,20 +50,9 @@ public class ChildController {
         return ResponseEntity.ok(childService.updateChild(childId, child));
     }
 
-    /**
-     * isMeal이 false인 아이의 경험치를 4 감소, scheduler를 사용해서 매일 00:00:00에 실행
-     */
-    @Scheduled(cron = "0 0 0 * * *")
-    @PutMapping("/exp")
-    public void updateChildExp() {
-        childService.updateChildExp();
-    }
 
-    @Scheduled(cron = "0 0 1 * * *")
-    @PutMapping("/isMeal")
-    public void updateChildIsMeal() {
-        childService.updateChildIsMeal();
-    }
+
+
 
     /**
      * 아이 토큰 등록
