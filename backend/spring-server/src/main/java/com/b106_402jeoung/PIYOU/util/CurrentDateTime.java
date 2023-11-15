@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class CurrentDateTime {
-    public static String getCurrentDateTime() {
+    public static LocalTime getCurrentDateTime() {
         LocalTime now = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        return now.format(formatter);
+        return LocalTime.parse(now.format(formatter));
     }
 }
