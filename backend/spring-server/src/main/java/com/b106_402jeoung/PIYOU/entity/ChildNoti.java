@@ -25,8 +25,4 @@ public class ChildNoti {
     @ManyToOne
     @JoinColumn(name = "notification_id")
     private Notification notification;
-
-    public void updateNotification(Notification notification) {
-        this.notification = notification;
-    }
 }
