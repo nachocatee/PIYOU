@@ -90,7 +90,7 @@ public class ChildService {
 
     @Transactional
     public void updateChildExp() {
-        List<Child> childList = childRepository.findAllByName("batch_test");
+        List<Child> childList = childRepository.findAllByIsMealFalse();
         int count = 0;
 
         for (Child child : childList) {
@@ -114,7 +114,7 @@ public class ChildService {
 
     @Transactional
     public void updateChildIsMeal() {
-        List<Child> childList = childRepository.findAll();
+        List<Child> childList = childRepository.findAllByIsMealTrue();
         int count = 0;
 
         for (Child child : childList) {
