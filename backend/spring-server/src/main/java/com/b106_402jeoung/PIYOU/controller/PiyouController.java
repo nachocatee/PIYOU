@@ -1,7 +1,6 @@
 package com.b106_402jeoung.PIYOU.controller;
 
 import com.b106_402jeoung.PIYOU.dto.CollectedResponse;
-import com.b106_402jeoung.PIYOU.dto.StatusResponse;
 import com.b106_402jeoung.PIYOU.service.PiyouService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

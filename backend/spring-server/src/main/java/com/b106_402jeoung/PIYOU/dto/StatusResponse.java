@@ -14,14 +14,14 @@ public class StatusResponse {
     Long piyouId;
     String piyouName;
 
-    public static StatusResponse fromEntity(Status status) {
+    public static StatusResponse of(Status status) {
         return StatusResponse.builder()
                 .id(status.getId())
                 .piyouId(status.getPiyouId())
                 .build();
     }
 
-    public static StatusResponse fromEntity(Status status, String piyouName) {
+    public static StatusResponse of(Status status, String piyouName) {
         return StatusResponse.builder()
                 .id(status.getId())
                 .piyouName(piyouName)

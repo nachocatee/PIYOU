@@ -1,23 +1,39 @@
 package com.b106_402jeoung.PIYOU.service;
 
-import com.b106_402jeoung.PIYOU.dto.PushRequest;
+import com.b106_402jeoung.PIYOU.dto.*;
+import com.b106_402jeoung.PIYOU.entity.Child;
+import com.b106_402jeoung.PIYOU.entity.ChildNoti;
+import com.b106_402jeoung.PIYOU.entity.Notification;
+import com.b106_402jeoung.PIYOU.repository.ChildNotiRepository;
+import com.b106_402jeoung.PIYOU.repository.ChildRepository;
+import com.b106_402jeoung.PIYOU.repository.NotificationRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class PushService {
-
+    private final ChildRepository childRepository;
+    private final NotificationRepository notificationRepository;
     private final String sendUrlVal = "https://fcm.googleapis.com/fcm/send";
+    private final String urlVal = "https://yusinsolution.com";
+    private final ChildNotiRepository childNotiRepository;
     @Value("${fcm.key.token}")
     private String apiKeyValue;
-    private final String urlVal = "https://yusinsolution.com";
 
     @SuppressWarnings("unchecked")
     public void sendPush(PushRequest pushRequest) {
@@ -57,8 +73,6 @@ public class PushService {
             apiParams.put("data", dataParams);
             apiParams.put("notification", notificationParams);
 
-            System.out.println(apiParams);
-
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
             wr.write(apiParams.toString());
             wr.close();
@@ -68,11 +82,9 @@ public class PushService {
             BufferedReader rd;
             StringBuilder sb = new StringBuilder();
 
-            if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-                rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            } else {
-                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-            }
+            rd = conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300 ?
+                    new BufferedReader(new InputStreamReader(conn.getInputStream())) :
+                    new BufferedReader(new InputStreamReader(conn.getErrorStream()));
             sb = new StringBuilder();
             String line;
             while ((line = rd.readLine()) != null) {
@@ -80,12 +92,36 @@ public class PushService {
             }
             rd.close();
             conn.disconnect();
-
-            System.out.println("응답값 : " + sb);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    @Transactional
+    public void deletePush(Long notiId) {
+        childNotiRepository.deleteByNotificationId(notiId);
+        notificationRepository.deleteById(notiId);
+    }
+
+    @Transactional
+    public NotificationResponse registerPush(NotificationRequest notificationRequest, UUID childId) {
+        Notification notification = notificationRepository.save(notificationRequest.toEntity());
+        Child child = childRepository.findById(childId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 아이가 없습니다."));
+
+        childNotiRepository.save(ChildNoti.builder()
+                                         .child(child)
+                                         .notification(notification)
+                                         .build());
+
+        return NotificationResponse.of(notification);
+    }
+
+    public List<ChildNotiResponse> getPush(UUID childId) {
+        List<ChildNoti> childNotiList = childNotiRepository.findByChildIdOrderByNotificationTimeAsc(childId);
+
+        return childNotiList.stream()
+                .map(ChildNotiResponse::of)
+                .collect(Collectors.toList());
     }
 }

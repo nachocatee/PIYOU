@@ -15,7 +15,7 @@ public class PiyouResponse {
     String engName;
     Integer degree;
 
-    public static PiyouResponse fromEntity(Piyou piyou) {
+    public static PiyouResponse of(Piyou piyou) {
         return PiyouResponse.builder()
                 .id(piyou.getId())
                 .name(piyou.getName())

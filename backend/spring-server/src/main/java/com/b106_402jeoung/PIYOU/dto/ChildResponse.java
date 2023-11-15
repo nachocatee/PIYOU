@@ -18,23 +18,23 @@ public class ChildResponse {
     Integer experience;
     StatusResponse status;
 
-    public static ChildResponse fromEntity(Child child) {
+    public static ChildResponse of(Child child) {
         return ChildResponse.builder()
                 .id(child.getId())
                 .name(child.getName())
                 .experience(child.getExperience())
                 .level(child.getLevel())
-                .status(StatusResponse.fromEntity(child.getStatus()))
+                .status(StatusResponse.of(child.getStatus()))
                 .build();
     }
 
-    public static ChildResponse fromEntity(Child child, StatusResponse statusResponse) {
+    public static ChildResponse of(Child child, StatusResponse statusResponse) {
         return ChildResponse.builder()
                 .id(child.getId())
                 .name(child.getName())
                 .experience(child.getExperience())
                 .level(child.getLevel())
-                .status(StatusResponse.fromEntity(child.getStatus(), statusResponse.getPiyouName()))
+                .status(StatusResponse.of(child.getStatus(), statusResponse.getPiyouName()))
                 .build();
     }
 }

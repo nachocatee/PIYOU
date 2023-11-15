@@ -25,7 +25,7 @@ public class PiyouService {
     public List<CollectedResponse> getPiyouList(UUID childId) {
         List<Collected> collectedList = collectedRepository.findByChildId(childId);
         return collectedList.stream()
-                .map(CollectedResponse::fromEntity)
+                .map(CollectedResponse::of)
                 .collect(Collectors.toList());
     }
 
@@ -39,10 +39,10 @@ public class PiyouService {
                 .orElse(null);
 
         if (collected == null) {
-            return CollectedResponse.fromEntity(collectedRepository.save(Collected.builder()
-                                                                                 .child(child)
-                                                                                 .piyou(piyou)
-                                                                                 .build()));
+            return CollectedResponse.of(collectedRepository.save(Collected.builder()
+                                                                         .child(child)
+                                                                         .piyou(piyou)
+                                                                         .build()));
         } else {
             throw new IllegalArgumentException("이미 등록된 피유입니다.");
         }

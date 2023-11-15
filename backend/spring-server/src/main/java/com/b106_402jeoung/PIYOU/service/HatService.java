@@ -1,13 +1,13 @@
 package com.b106_402jeoung.PIYOU.service;
 
+import com.b106_402jeoung.PIYOU.dto.CollectedHatResponse;
+import com.b106_402jeoung.PIYOU.dto.HatResponse;
 import com.b106_402jeoung.PIYOU.entity.Child;
 import com.b106_402jeoung.PIYOU.entity.CollectedHat;
 import com.b106_402jeoung.PIYOU.entity.Hat;
 import com.b106_402jeoung.PIYOU.repository.ChildRepository;
-import com.b106_402jeoung.PIYOU.repository.HatRepository;
-import com.b106_402jeoung.PIYOU.dto.CollectedHatResponse;
-import com.b106_402jeoung.PIYOU.dto.HatResponse;
 import com.b106_402jeoung.PIYOU.repository.CollectedHatRepository;
+import com.b106_402jeoung.PIYOU.repository.HatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +27,7 @@ public class HatService {
     public List<HatResponse> getHat(UUID childId) {
         List<CollectedHat> collectedHats = collectedHatRepository.findByChildId(childId);
         return collectedHats.stream()
-                .map(collectedHat -> HatResponse.fromEntity(collectedHat.getHat()))
+                .map(collectedHat -> HatResponse.of(collectedHat.getHat()))
                 .collect(Collectors.toList());
     }
 
@@ -49,6 +49,6 @@ public class HatService {
                                                                             .child(child)
                                                                             .hat(hat)
                                                                             .build());
-        return CollectedHatResponse.fromEntity(createCollectHat);
+        return CollectedHatResponse.of(createCollectHat);
     }
 }
