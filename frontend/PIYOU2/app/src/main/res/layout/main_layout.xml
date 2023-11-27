@@ -12,10 +12,11 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
         android:src="@drawable/sea_idle"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
         android:onClick="toggleAnimation"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
