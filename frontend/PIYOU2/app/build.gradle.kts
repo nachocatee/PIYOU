@@ -11,8 +11,8 @@ android {
         applicationId = "com.b106_402jeoung.PIYOU"
         minSdk = 33
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 13
+        versionName = "2.2.0"
         vectorDrawables {
             useSupportLibrary = true
         }
