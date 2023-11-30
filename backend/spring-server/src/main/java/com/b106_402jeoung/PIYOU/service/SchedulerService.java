@@ -62,8 +62,8 @@ public class SchedulerService {
 
         for (ChildNoti childNoti : oldNoti) {
             pushService.sendPush(PushRequest.builder()
-                                         .title("밥 먹기 10분 전이에요")
-                                         .message("방송 시간을 지켜주세요.\n" + "시청자들과의 약속을 지켜주세요")
+                                         .title("밥 먹을 시간이에요.")
+                                         .message("피유와 함께 밥을 먹어요!")
                                          .tokenList(childNoti.getChild()
                                                             .getToken())
                                          .build());
